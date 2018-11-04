@@ -1,0 +1,124 @@
+{% extends "base.html.twig" %}
+
+ {% block title %}
+     User profile
+ {% endblock %}
+
+    {% block pageTitle %}User Profile{% endblock %}
+
+    {% block body %}
+
+        <form action="{{ path('profil') }}"   method="post">
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Edit Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-5 pr-1">
+                                    <div class="form-group">
+                                        <label>University</label>
+                                        <input type="text" class="form-control" placeholder="University">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" placeholder="{{ app.user.email }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" placeholder="First Name" value="{{ app.user.name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 pr-1">
+                                    <div class="form-group">
+                                        <label>Age</label>
+                                        <input type="number" class="form-control" placeholder="Age">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Edit profile - skills -->
+                            <h6 class="title">Skills</h6>
+
+                            {% for myskill in userskills %}
+                                <div class="row">
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+
+                                            <input type="text" class="form-control" placeholder="City" value="{{ myskill.idSkill.skill }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            <select name="ajout_skill" >
+                                <option> </option>
+                                {% for skill in allskills %}
+
+                                    <option value={{ skill.skill }}>{{ skill.skill }}</option>
+
+                                {% endfor %}
+                            </select>
+
+                            <input type="submit" value="submit" name="submit" class="btn btn-round btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- USER CARD -->
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="image">
+                        <img src="{{ asset('assets/img/bg5.jpg') }}" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <div class="author">
+                            <a href="#">
+                                <img class="avatar border-gray" src="{{ asset('uploads/images/' ~ app.user.image) }}" alt="...">
+                                <h5 class="title">{{ app.user.name }}</h5>
+                            </a>
+                            <p class="description">
+                                michael24
+                            </p>
+                        </div>
+                        <p class="description text-center">
+                            "Lamborghini Mercy
+                            <br> Your chick she so thirsty
+                            <br> I'm in that two seat Lambo"
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="button-container">
+                        <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                            <i class="fab fa-google-plus-g"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    {% endblock %}

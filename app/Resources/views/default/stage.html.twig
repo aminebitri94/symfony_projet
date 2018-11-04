@@ -1,0 +1,7 @@
+<form action="{{ path('submit' , {'idstage': elstage.idStage }) }}"   method="post">
+{{ elstage.nomStage }} <br>
+
+<img src="{{ asset('uploads/images/' ~ elstage.image) }}" width="150" height="225"/>
+
+<input type="submit" name="valider" >
+</form>

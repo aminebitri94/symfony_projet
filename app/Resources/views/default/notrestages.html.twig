@@ -1,0 +1,8 @@
+{% for stage in notrestages %}
+    <tr>
+        <th> <a href="{{ path('select', {'id': stage.idStage }) }}">
+                {{ stage.nomStage }}</a></th>
+
+        <th> <img src="{{ asset('uploads/images/' ~ stage.image) }}" width="150" height="225"/> </th>
+    </tr>
+{% endfor %}

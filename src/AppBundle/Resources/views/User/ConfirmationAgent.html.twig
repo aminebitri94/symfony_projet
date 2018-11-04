@@ -1,0 +1,35 @@
+{% block javascripts %}    <!-- JQUERY FROM GOOGLE API -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(function() {
+            $( '.validButton' ).click(function() {
+                var id = $(this).attr('id');
+                var value=$('#'+id+'').attr("name");
+                $.post('ConfirmationAgent',{value:value},
+                    function( ){
+                        location.reload();
+                    });
+                return false;
+            });
+
+        });
+    </script>
+{% endblock %}
+<h3> agent non confirmé</h3>
+{% for agent in user %}
+    {% if agent.nomSalle != null %}
+        {% if agent.roles == ["ROLE_USER"] %}
+        <img src="{{ asset('uploads/images/' ~ agent.image) }}" width="50" height="50"/>
+        {{ agent.nomSalle }}
+        {{ agent.email }}
+            {{ agent.adresse }}
+            {{ agent.telephone }}
+
+            <input type="submit" class="validButton"  value="valider agent" name={{ agent.id }}     id={{ agent.id }} >
+        {% endif %}
+    {% endif %}
+    <br>
+{% endfor %}
+
+

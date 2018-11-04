@@ -1,0 +1,48 @@
+Knowledge:
+    type: entity
+    table: knowledge
+    indexes:
+        id_user:
+            columns:
+                - id_user
+        id_skill_3:
+            columns:
+                - id_skill
+        id_user_2:
+            columns:
+                - id_user
+    uniqueConstraints:
+        id_skill_2:
+            columns:
+                - id_skill
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        idSkill:
+            targetEntity: Skill
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_skill:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idUser:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_user:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

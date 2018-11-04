@@ -1,0 +1,56 @@
+{% block javascripts %}    <!-- JQUERY FROM GOOGLE API -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(function() {
+            $( '.validButton' ).click(function() {
+                var id = $(this).attr('id');
+                var value=$('#'+id+'').attr("name");
+                $.post('gererUser',{$user_req:value},
+                    function(){
+                        location.reload();
+                    });
+                return false;
+            });
+
+        });
+    </script>
+{% endblock %}
+<body>
+<form action="{{ path('gererUser') }}"   method="post"  >
+
+
+    <input type="text" name="username" placeholder="put correct username"><br>
+
+    <p><input type="submit" value="submit" name="submit" ></p>
+
+    {% if user is not null %}
+
+        <img src="{{ asset('uploads/images/' ~ user.image) }}" width="50" height="50"/>
+        {{ user.username }}
+        {{ user.email }}
+         <input type="submit" class="validButton" value="changer a admin"  name={{ user.id }}   id={{ user.id }} ><br>
+    {% endif %}
+
+<p>
+
+
+
+</p>
+
+</form>
+{% for Userr in AllUsers %}
+{% if Userr.roles == ["ROLE_USER"] %}
+    <img src="{{ asset('uploads/images/' ~ Userr.image) }}" width="50" height="50"/>
+    {{ Userr.username }}
+    {{ Userr.email }}
+    <input type="submit" class="validButton" value="changer Rolle"  name={{ Userr.id }}   id={{ Userr.id }} >
+    <br>
+{% endif %}
+{% endfor %}
+</body>
+
+
+
+
+

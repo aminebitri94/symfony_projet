@@ -1,0 +1,3 @@
+tekup_glsia_homepage:
+    path:     /
+    defaults: { _controller: TekupGlsiaBundle:Default:index }

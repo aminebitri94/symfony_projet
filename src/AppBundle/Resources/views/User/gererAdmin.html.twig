@@ -1,0 +1,44 @@
+{% block javascripts %}    <!-- JQUERY FROM GOOGLE API -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(function() {
+            $( '.validButton' ).click(function() {
+                var id = $(this).attr('id');
+                var value=$('#'+id+'').attr("name");
+                $.post('gererUsers',{admin:value},
+                    function(){
+                        location.reload();
+                    });
+                return false;
+            });
+
+        });
+    </script>
+{% endblock %}
+<h3> notre equipe</h3>
+<br>
+{% for user in users %}
+        {% if user.roles == ["ROLE_ADMIN","ROLE_USER"] %}
+    <img src="{{ asset('uploads/images/' ~ user.image) }}" width="50" height="50"/>
+    {{ user.username }}
+    {{ user.email }}
+    <input type="submit" class="validButton" value="changer Rolle"  name={{ user.id }}   id={{ user.id }} >
+<br>
+ {% endif %}
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

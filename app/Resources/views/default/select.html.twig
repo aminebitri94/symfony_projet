@@ -1,0 +1,9 @@
+{% for etudiant in listetudiant %}
+{{ etudiant.idUser.name }}
+    {{ etudiant.idUser.image }}
+    {{ etudiant.idUser.email }}
+
+    <form action="{{ path('validi', {'id': etudiant.idStage.idStage ,'user' : etudiant.idUser.id}) }}"   method="post">
+        <input type="submit">
+    </form>
+{% endfor %}

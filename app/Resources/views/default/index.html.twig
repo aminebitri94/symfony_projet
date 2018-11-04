@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+                    <table class="table">
+                        {% for stage in stages %}
+                            <tr>
+                              <th> <a href="{{ path('stage', {'id': stage.idStage }) }}">
+                                   {{ stage.nomStage }}</a></th>
+
+                                <th> <img src="{{ asset('uploads/images/' ~ stage.image) }}" width="150" height="225"/> </th>
+                            </tr>
+                        {% endfor %}
+                    </table>
+{% endblock %}

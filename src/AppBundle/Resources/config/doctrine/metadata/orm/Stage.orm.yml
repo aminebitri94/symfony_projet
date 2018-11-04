@@ -1,0 +1,64 @@
+Stage:
+    type: entity
+    table: stage
+    indexes:
+        id_entreprise:
+            columns:
+                - id_entreprise
+        skills:
+            columns:
+                - skills
+    id:
+        idStage:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_stage
+            generator:
+                strategy: IDENTITY
+    fields:
+        nomStage:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: nom_stage
+        dure:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        skills:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        image:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    manyToOne:
+        idEntreprise:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_entreprise:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
